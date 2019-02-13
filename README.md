@@ -11,7 +11,7 @@ Cater will configure the following components out-of-the-box
 * Babel 6
 * Jest 22
 * React 16
-* Webpack 3
+* Webpack 4
 
 As core components, Cater tends to have a strong opinion on how they're set up. The configuration is augmented and extended by Plugins.
 

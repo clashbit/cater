@@ -1,6 +1,6 @@
 {
   "name": "cater",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Modular convention-driven framework for React and Friends",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
   "license": "MIT",
@@ -15,10 +15,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "cater-runtime": "^0.9.0"
+    "cater-runtime": "^0.10.0"
   },
   "devDependencies": {
-    "cater-jest": "^0.9.0",
+    "cater-jest": "^0.10.0",
     "jest": "^22.0.4",
     "react-test-renderer": "^16.2.0",
     "supertest": "^3.0.0"

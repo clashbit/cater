@@ -1,6 +1,6 @@
 {
   "name": "cater-redux",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Adds Redux to a Cater Application",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "cater-build": "^0.9.0",
+    "cater-build": "^0.10.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   }

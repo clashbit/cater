@@ -4,13 +4,15 @@ const BabelConfig = require('./config-babel');
 
 const babel = BabelConfig();
 
+const defaultHttpPort = parseInt(process.env.PORT, 10) || 3000;
+
 const defaultOptions = {
   babel,
   babelRegisterDisable: false,
   assetHost: null,
   buildDirectory: 'build',
   bundleName: 'bundle',
-  httpPort: 3000,
+  httpPort: defaultHttpPort,
   mode: 'runtime',
   publicPath: '/static/',
   serverContext: {},

@@ -1,5 +1,6 @@
 // Copyright Jon Williams 2017-2018. See LICENSE file.
-const fs = require('fs');
+const { spawnSync } = require('child_process');
+const fs = require('fs-extra');
 const path = require('path');
 
 /**
@@ -9,9 +10,19 @@ const path = require('path');
  * @module cater-build/build
  */
 class Build {
-  constructor(buildPath) {
+  constructor(appRootPath, buildPath) {
+    this.appRootPath = appRootPath;
     this.buildPath = buildPath;
     this.emitFileCount = 0;
+  }
+
+  /**
+   * Copies a source file into the current build directory.
+   */
+  copy(filename) {
+    const source = path.join(this.appRootPath, filename);
+    const target = path.join(this.buildPath, filename);
+    fs.copyFileSync(source, target);
   }
 
   /**
@@ -51,6 +62,24 @@ class Build {
     const filename = `cater.config.${identifier}.${name}.${extension}`;
     this.emitFileCount += 1;
     return this.emit(filename, content);
+  }
+
+  // Runs a command
+  // eslint-disable-next-line class-methods-use-this
+  exec(command, stdio = true) {
+    const options = stdio ? { stdio: 'inherit' } : {};
+
+    // Echo the command we're proposing to run
+    console.log(command); // eslint-disable-line no-console
+    const result = spawnSync('sh', ['-c', command], options);
+    if (result.status !== 0) {
+      if (!stdio) {
+        console.log(result.stdout.toString()); // eslint-disable-line no-console
+        console.error(result.stderr.toString()); // eslint-disable-line no-console
+      }
+      throw new Error('Command execution failed.');
+    }
+    return result;
   }
 }
 

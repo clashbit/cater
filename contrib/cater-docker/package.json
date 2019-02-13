@@ -1,12 +1,12 @@
 {
-  "name": "cater-google-cloud",
-  "version": "0.10.0",
-  "description": "Adds Google Cloud deployment and utilities to Cater",
+  "name": "cater-docker",
+  "version": "0.2.0",
+  "description": "Generates a Dockerfile and runs a docker build",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
   "license": "MIT",
   "homepage": "https://github.com/clashbit/cater",
   "main": "plugin.js",
-  "scripts": {
-    "test": "jest"
+  "dependencies": {
+    "cater-build": "^0.10.0"
   }
 }

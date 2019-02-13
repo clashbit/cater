@@ -1,7 +1,7 @@
 {
-  "name": "cater-react-router",
-  "version": "0.10.0",
-  "description": "Adds React Router to a Cater Application",
+  "name": "cater-deploy-google-cloud-storage",
+  "version": "0.1.0",
+  "description": "Deploys a cater build directory to Google Cloud Storage",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
   "license": "MIT",
   "homepage": "https://github.com/clashbit/cater",
@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "cater-build": "^0.10.0",
-    "react-router-dom": "^4.2.2"
+    "@google-cloud/storage": "^1.6.0",
+    "fast-crc32c": "^1.0.4"
   }
 }

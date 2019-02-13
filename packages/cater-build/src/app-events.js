@@ -7,7 +7,8 @@ const Events = {
   compiling: 'compiling',
   configuring: 'configuring',
   configured: 'configured',
-  deploying: 'deploying'
+  deploying: 'deploying',
+  deployed: 'deployed'
 };
 
 module.exports = Events;

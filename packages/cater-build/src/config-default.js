@@ -25,7 +25,8 @@ const buildDefaults = {
   startOnError: true,
   staticDirectory: 'static',
   universalNames: ['app'],
-  universalPrefix: 'app'
+  universalPrefix: 'app',
+  useLogging: true
 };
 
 // Combine the build-time defaults with the runtime ones from cater-runtime

@@ -73,9 +73,9 @@ function autoDefinePlugins(appRootPath, pkg, defaultPlugins) {
 }
 
 // Configures any automatic hooks for the plugin
-function configurePluginHooks(cater, plugin) {
+function configurePluginHooks(cater, target) {
   Object.entries(Events).forEach(([key, value]) => {
-    if (plugin[key]) cater.on(value, plugin[key].bind(plugin));
+    if (target[key] && typeof target[key] === 'function') cater.on(value, target[key].bind(target));
   });
 }
 
@@ -97,6 +97,8 @@ function configurePlugin(cater, name, options) {
   // Plugin should export a function to configure itself
   configurePluginHooks(cater, plugin);
   plugin.result = plugin(cater, options);
+  if (typeof plugin.result === 'object') configurePluginHooks(cater, plugin.result);
+
   plugin.componentRootPath = path.dirname(resolve);
   return plugin;
 }

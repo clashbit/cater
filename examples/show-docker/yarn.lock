@@ -1200,6 +1200,12 @@ cater-build@^0.10.0:
     webpack-hot-middleware "^2.21.0"
     webpack-manifest-plugin "^2.0.0-rc.2"
 
+cater-docker@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/cater-docker/-/cater-docker-0.1.0.tgz#8d87c6092348a47b5400cdf7f098fe902d62b325"
+  dependencies:
+    cater-build "^0.10.0"
+
 cater-jest@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/cater-jest/-/cater-jest-0.10.0.tgz#8c2faeaa496d1d934694bf39859dee252427c7c6"

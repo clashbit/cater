@@ -16,13 +16,12 @@ const handlerWebpack = require('./handler-webpack');
 function generate(app) {
   const cater = handlerCater(app);
   const errors = handlerErrors(app);
-  const logging = HandlerLogging();
+
+  const logging = app.useLogging ? [HandlerLogging()] : [];
 
   return handlerWebpack(app, cater.reload).then((webpack) => {
-    const handlers = [logging, errors, cater, webpack, Middleware.notFoundHandler];
-
     const aStatic = handlerStatic(app.publicPath, app.devStaticPath);
-    handlers.splice(1, 0, aStatic);
+    const handlers = [...logging, aStatic, errors, cater, webpack, Middleware.notFoundHandler];
     return Middleware(handlers);
   });
 }

@@ -1,6 +1,6 @@
 {
   "name": "cater-memoization",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Provides memoization for React components in Universal Applications",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
   "license": "MIT",

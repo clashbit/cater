@@ -1,21 +1,22 @@
 {
-  "name": "deploy-now",
+  "name": "show-docker",
   "version": "0.10.0",
-  "description": "Hello World example for deployment to now.sh",
+  "description": "Example that shows the use of the Docker build",
   "author": "Jon Williams <jon@jonathannen.com> https://jonathannen.com",
+  "dockerName": "jonathannen/show-docker",
   "license": "MIT",
   "dependencies": {
     "cater": "^0.10.0"
   },
   "scripts": {
-    "dev": "cater dev",
-    "test": "jest",
     "build": "cater build",
+    "dev": "cater dev",
     "start": "NODE_ENV=production cater start",
-    "deploy": "now"
+    "test": "jest"
   },
   "devDependencies": {
     "cater-build": "^0.10.0",
+    "cater-docker": "^0.1.0",
     "cater-jest": "^0.10.0",
     "jest": "^22.0.4",
     "supertest": "^3.0.0"

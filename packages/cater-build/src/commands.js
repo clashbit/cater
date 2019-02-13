@@ -24,7 +24,7 @@ function runBuild() {
 
 // Used as a hook to signal deployment - particularly to any plugins.
 function runDeploy() {
-  return Promise.resolve(this.callbackDeploy());
+  return Promise.resolve(this.triggerDeploy());
 }
 
 // Runs the development server - that's a server with webpack in-memory

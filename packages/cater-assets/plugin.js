@@ -1,6 +1,7 @@
 // Copyright Jon Williams 2017-2018. See LICENSE file.
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const { ServerContext } = require('cater-runtime');
 const vm = require('vm');
 
 /**
@@ -170,7 +171,8 @@ function generateWebpackStylesheetRule(state) {
     use: state.extractCssPlugin.extract({
       use: [
         { loader: 'css-loader', options: { minimize: state.mimimize } }, //
-        { loader: 'sass-loader' }
+        { loader: 'sass-loader' },
+        { loader: 'js-to-styles-var-loader' }
       ]
     })
   };
@@ -187,10 +189,7 @@ function onWebpackCompiled(state, side, stats) {
   const entries = [];
 
   // Clear down the server context
-  ['javascripts', 'stylesheets'].forEach((v) => {
-    const collection = serverContext[v];
-    serverContext[v] = collection.filter((e) => !state.contextEntries.includes(e));
-  });
+  serverContext.clear();
 
   // Extract manifest chunk JS and CSS from the compilation -- in general
   // this will be references to the JS and CSS files.
@@ -240,10 +239,10 @@ function onWebpackCompiled(state, side, stats) {
 // the necessary rules and transforms into the client and server sides
 function onConfigured(app, state) {
   // Update state based upon any changes
-  const reassign = state;
-  reassign.assetHost = app.assetHost || '';
-  reassign.bundleName = app.bundleName;
-  reassign.serverContext = app.serverContext;
+  state.assetHost = app.assetHost || '';
+  state.bundleName = app.bundleName;
+  state.serverContext = new ServerContext();
+  app.serverContexts.assets = state.serverContext;
 
   const babelTransform = generateBabelAssetTransform(state);
   const imageRules = generateWebpackImageRules(state);
@@ -267,19 +266,7 @@ function onConfigured(app, state) {
 
 // Called when the Cater App is being built
 function built(app, build, state) {
-  function filterAndLocate(extension) {
-    return state.files
-      .filter((filename) => path.extname(filename) === extension)
-      .map((filename) => state.location(filename));
-  }
-
-  const serverContext = {
-    javascripts: filterAndLocate('.js').map((filename) => ({ src: filename })),
-    stylesheets: filterAndLocate('.css').map((filename) => ({ href: filename }))
-  };
-
-  if (serverContext.javascripts.length + serverContext.stylesheets.length === 0) return;
-
+  const { serverContext } = state;
   build.emitConfigurationFile('cater-assets', { serverContext });
 }
 

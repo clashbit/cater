@@ -1,5 +1,6 @@
 // Copyright Jon Williams 2017-2018. See LICENSE file.
 const BuildCater = require('./src');
+const Events = require('./src/app-events');
 
 /**
  * Primary entry point for the build-versions of Cater. Returns an
@@ -37,5 +38,5 @@ function testHarness() {
   return require('./src/harness.js'); // eslint-disable-line global-require
 }
 
-const exporting = { readyCommandLine, testHarness };
+const exporting = { Events, readyCommandLine, testHarness };
 module.exports = Object.assign(index, exporting);

@@ -9,15 +9,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Deploy Google Cloud Storage now lets you explictly set the bucket name. Useful as extra "web site" features of Google Storage require a specific naming format.
+* Added the ability to "require" JavaScript files in SCSS. Useful to allow the sharing of variables (like fonts, colors) between JavaScript and SCSS.
+
+### Fixed
+
+* Icon order influences which favicon Firefox selects. Made sure the higher resolution ones are later. This prevents the fuzzies on retina favicons.
+* Favicon plugin now also generates the Microsoft Tile and Theme color meta tags.
+
+### [0.10.0] - 2018-03-03
+
+### Added
+
 * Included a plugin to enable babel-transformed use of the polished CSS-in-JS utility library. Use cater-polished to add support.
 * Added in spread operators via the babel transformation.
 * Simple plugins can now be created by dropping a _.js file in the /plugins directory of your app, or in any of the included cater-_ packages.
+* Added support for favicons via the cater-build/favicon plugin.
+* Added support for deploying static client assets to Google Cloud Storage via the cater-deploy-google-cloud-storage contrib plugin.
+* Basic Docker image build support via cater-docker.
 
 ### Fixed
 
 * Server Context was adding multiple bundle.css and bundle.js entries on reload in dev mode.
 
 ### Changed
+
+* Upgraded from Webpack 3 to Webpack 4.
 
 * Major revision of cater-assets. Instead of the special 'assets/' import, just use relative paths instead. Required dropping the approach of scanning the manifest. However, it means asset imports can be relative -- this makes things neater. It also means libraries can reference the same asset names without collisons.
 
